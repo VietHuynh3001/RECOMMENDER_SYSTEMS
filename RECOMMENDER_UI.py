@@ -48,7 +48,7 @@ elif choice == 'Phân tích và kết quả':
         col1,col2=st.columns(2)
         with col1:
             # hiển thị các hình ảnh biểu đồ tại đây
-            st.image(f"{index_choice_eda}_eda.png", width=340, caption=f'Biểu đồ mô tả {choice_eda}')
+            st.image(f"{index_choice_eda}_eda.PNG", width=340, caption=f'Biểu đồ mô tả {choice_eda}')
         with col2:
             # hiển thị nội dung mô tả biểu đồ tại đây
             comment_content=ut.readtxt('RECOMMENDER_EDA_GRAPH_COMMENTS.txt')[1][index_choice_eda].strip()
@@ -235,4 +235,5 @@ elif choice=='Hệ thống đề xuất khách sạn 2':
     else:
 
         pass  
+
 
