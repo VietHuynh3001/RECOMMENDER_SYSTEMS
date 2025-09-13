@@ -75,7 +75,7 @@ elif choice == 'Phân tích và kết quả':
                 final_assessment_content=assessment_content.strip().replace('\ufeff','')
                 st.write(assessment_content)
             # hiển thị các hình ảnh biểu đồ mô tả kết quả tunning tại đây
-            st.image("0_model_assessment.png", width=500, caption=f'Biểu đồ mô tả kết quả đánh giá model')
+            st.image("0_model_assessment.PNG", width=500, caption=f'Biểu đồ mô tả kết quả đánh giá model')
     elif choice_model=='Content-based recommender system':
         with st.container():
             # hiển thị nội dung mô tả phần content-based recommender system
@@ -235,5 +235,6 @@ elif choice=='Hệ thống đề xuất khách sạn 2':
     else:
 
         pass  
+
 
 
