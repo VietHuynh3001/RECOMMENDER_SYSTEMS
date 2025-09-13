@@ -3,9 +3,7 @@ import pandas as pd
 import utils as ut
 import glob
 
-# PYSPARK
-spark = ut.spark
-sc = ut.sc
+
 
 
 
@@ -237,3 +235,4 @@ elif choice=='Hệ thống đề xuất khách sạn 2':
     else:
 
         pass  
+
