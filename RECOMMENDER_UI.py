@@ -3,6 +3,12 @@ import pandas as pd
 import utils as ut
 import glob
 
+# PYSPARK
+spark = ut.spark
+sc = ut.sc
+
+
+
 
 
 # THANH MENU
@@ -229,4 +235,5 @@ elif choice=='Hệ thống đề xuất khách sạn 2':
     elif button:
         st.error('Xin hãy đăng nhập lại')
     else:
+
         pass  
