@@ -1,0 +1,2 @@
+﻿`Nhận xét:` việc sử dụng trực tiếp ID của reviewer dẫn đến tình trạng dữ liệu quá thưa (sparsity 0.997), khiến mô hình không học được và cho ra kết quả NaN. Khi chuyển sang sử dụng kết hợp **nationality + reviewer name** để biểu diễn người dùng, mô hình cho kết quả khả quan hơn, với giá trị RMSE nhỏ nhất tại **regParam = 0.1**. Do đó, việc lựa chọn đặc trưng phù hợp giúp mô hình học được mối quan hệ giữa khách hàng và khách sạn, cải thiện hiệu quả dự đoán.
+`Nhận xét:` Gensim cho số điểm thấp hơn cosine simliarity.

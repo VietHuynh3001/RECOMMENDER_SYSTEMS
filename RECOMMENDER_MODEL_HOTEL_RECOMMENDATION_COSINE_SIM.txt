@@ -1,0 +1,2 @@
+﻿Sau khi xây dựng các mô hình gợi ý, bước đánh giá hệ thống Recommender đóng vai trò quan trọng để xác định mức độ hiệu quả và tính ứng dụng thực tiễn. Quá trình này không chỉ dừng lại ở việc so sánh độ chính xác giữa các thuật toán như Content-based Filtering và Collaborative Filtering, mà còn xem xét khả năng cá nhân hóa, độ bao phủ gợi ý và mức độ hài lòng của người dùng. Các thước đo định lượng như RMSE cùng với phân tích định tính về trải nghiệm người dùng sẽ cung cấp cái nhìn toàn diện, từ đó giúp lựa chọn và tối ưu mô hình phù hợp nhất cho hệ thống Agoda.
+
