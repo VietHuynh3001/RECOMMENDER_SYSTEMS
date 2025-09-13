@@ -45,28 +45,6 @@ from random import sample,seed
 # sc = spark.sparkContext
 
 
-# PYSPARK
-import findspark
-findspark.init()
-
-from pyspark.sql import SparkSession
-
-# ✅ Tạo SparkSession đúng chuẩn
-spark = SparkSession.builder \
-    .appName("RecommenderSystem") \
-    .master("local[*]") \
-    .config("spark.hadoop.dfs.client.use.datanode.hostname", "true") \
-    .getOrCreate()
-
-# ✅ Lấy SparkContext nếu cần dùng
-sc = spark.sparkContext
-
-# ========================
-# PYSPARK FUNCTIONS / ML
-# ========================
-from pyspark.sql.functions import regexp_replace, col, explode
-from pyspark.ml.feature import StringIndexer
-from pyspark.ml.recommendation import ALS, ALSModel
 
 
 
@@ -373,49 +351,50 @@ def WordCloud_Hotels(ID):
     plt.tight_layout()
     plt.show()
 
-def Collaborative_filtering_recommender_system(Name,Nationality,n):
-    # READ HOTEL COMMENTS
-    df=spark.read.csv('Comments_final.csv',header=True,inferSchema=True)
-    df=df.select('Hotel ID', 'Reviewer_ID_new','Reviewer Name','Nationality' ,'Score')
+# def Collaborative_filtering_recommender_system(Name,Nationality,n):
+#     # READ HOTEL COMMENTS
+#     df=spark.read.csv('Comments_final.csv',header=True,inferSchema=True)
+#     df=df.select('Hotel ID', 'Reviewer_ID_new','Reviewer Name','Nationality' ,'Score')
 
-    # READ HOTEL INFORMATION
-    df_hotel=spark.read.csv('temp_hotel.csv',header=True,inferSchema=True)
-    df=df.join(df_hotel,df_hotel.Hotel_ID==df['Hotel ID'],how='inner')
+#     # READ HOTEL INFORMATION
+#     df_hotel=spark.read.csv('temp_hotel.csv',header=True,inferSchema=True)
+#     df=df.join(df_hotel,df_hotel.Hotel_ID==df['Hotel ID'],how='inner')
 
-    # Define string indexer
-    index=StringIndexer(inputCols=['Hotel_ID','Reviewer_ID_new'],outputCols=['Hotel_ID_indexed','Reviewer_ID_new_indexed'])
-    # Build string indexer
-    indexer=index.fit(df)
-    df=indexer.transform(df)
+#     # Define string indexer
+#     index=StringIndexer(inputCols=['Hotel_ID','Reviewer_ID_new'],outputCols=['Hotel_ID_indexed','Reviewer_ID_new_indexed'])
+#     # Build string indexer
+#     indexer=index.fit(df)
+#     df=indexer.transform(df)
 
-    # IMPORT MODEL
-    BestModel=ALSModel.load('Models/ALS_MODELS')
+#     # IMPORT MODEL
+#     BestModel=ALSModel.load('Models/ALS_MODELS')
 
-    # RECOOMENDATION SYSTEM
+#     # RECOOMENDATION SYSTEM
 
-    # Find the index of natinality and name
-    nationality_index=df.select('Reviewer_ID_new','Reviewer_ID_new_indexed','Reviewer Name','Nationality').distinct()
+#     # Find the index of natinality and name
+#     nationality_index=df.select('Reviewer_ID_new','Reviewer_ID_new_indexed','Reviewer Name','Nationality').distinct()
 
-    # Find the index of hotel
-    Hotel_index=df.select('Hotel_ID','Hotel_ID_indexed','Hotel_Name').distinct()
+#     # Find the index of hotel
+#     Hotel_index=df.select('Hotel_ID','Hotel_ID_indexed','Hotel_Name').distinct()
 
-    target_nationality_index=nationality_index.filter(nationality_index['Reviewer Name'].isin(Name)).filter(nationality_index['Nationality'].isin(Nationality))
+#     target_nationality_index=nationality_index.filter(nationality_index['Reviewer Name'].isin(Name)).filter(nationality_index['Nationality'].isin(Nationality))
 
-    user_rec=BestModel.recommendForUserSubset(target_nationality_index.select('Reviewer_ID_new_indexed'),n)
-    user_rec=user_rec.select(user_rec.Reviewer_ID_new_indexed,explode(user_rec.recommendations))
+#     user_rec=BestModel.recommendForUserSubset(target_nationality_index.select('Reviewer_ID_new_indexed'),n)
+#     user_rec=user_rec.select(user_rec.Reviewer_ID_new_indexed,explode(user_rec.recommendations))
     
-    user_rec=user_rec.withColumns({'Hotel_ID_indexed':user_rec.col.getField('Hotel_ID_indexed'),
-                                   'rating':user_rec.col.getField('rating')})
+#     user_rec=user_rec.withColumns({'Hotel_ID_indexed':user_rec.col.getField('Hotel_ID_indexed'),
+#                                    'rating':user_rec.col.getField('rating')})
 
 
-    # Final result
-    final_recommendation=user_rec.select('Reviewer_ID_new_indexed',col('Hotel_ID_indexed').cast('double'))
-    final_recommendation=final_recommendation.join(target_nationality_index,on='Reviewer_ID_new_indexed',how='inner')
-    final_recommendation=final_recommendation.join(Hotel_index,on='Hotel_ID_indexed',how='left')
-    #final_recommendation.select('Nationality','Hotel_name').show()
-    recommended_hotels=final_recommendation.select('Reviewer Name','Nationality','Hotel_Name')
-    df=recommended_hotels.toPandas()
+#     # Final result
+#     final_recommendation=user_rec.select('Reviewer_ID_new_indexed',col('Hotel_ID_indexed').cast('double'))
+#     final_recommendation=final_recommendation.join(target_nationality_index,on='Reviewer_ID_new_indexed',how='inner')
+#     final_recommendation=final_recommendation.join(Hotel_index,on='Hotel_ID_indexed',how='left')
+#     #final_recommendation.select('Nationality','Hotel_name').show()
+#     recommended_hotels=final_recommendation.select('Reviewer Name','Nationality','Hotel_Name')
+#     df=recommended_hotels.toPandas()
 
 
-    return df
+#     return df
+
 
