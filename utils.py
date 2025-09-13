@@ -6,21 +6,21 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from random import sample,seed
 
-# PYSPARK
-import findspark
-findspark.init()
+# # PYSPARK
+# import findspark
+# findspark.init()
 
-import pyspark
-from pyspark import SparkContext
-from pyspark.sql import SparkSession
-SparkContext.setSystemProperty('spark.hadoop.dfs.client.use.datanode.hostname', 'true')
+# import pyspark
+# from pyspark import SparkContext
+# from pyspark.sql import SparkSession
+# SparkContext.setSystemProperty('spark.hadoop.dfs.client.use.datanode.hostname', 'true')
 
-sc = SparkContext(master="local", appName="New Spark Context")
-spark = SparkSession(sc)
+# sc = SparkContext(master="local", appName="New Spark Context")
+# spark = SparkSession(sc)
 
-from pyspark.sql.functions import regexp_replace,col,explode
-from pyspark.ml.feature import StringIndexer
-from pyspark.ml.recommendation import ALS,ALSModel
+# from pyspark.sql.functions import regexp_replace,col,explode
+# from pyspark.ml.feature import StringIndexer
+# from pyspark.ml.recommendation import ALS,ALSModel
 
 # # PYSPARK
 # import findspark
@@ -43,6 +43,30 @@ from pyspark.ml.recommendation import ALS,ALSModel
 
 # # Lấy SparkContext từ SparkSession
 # sc = spark.sparkContext
+
+
+# PYSPARK
+import findspark
+findspark.init()
+
+from pyspark.sql import SparkSession
+
+# ✅ Tạo SparkSession đúng chuẩn
+spark = SparkSession.builder \
+    .appName("RecommenderSystem") \
+    .master("local[*]") \
+    .config("spark.hadoop.dfs.client.use.datanode.hostname", "true") \
+    .getOrCreate()
+
+# ✅ Lấy SparkContext nếu cần dùng
+sc = spark.sparkContext
+
+# ========================
+# PYSPARK FUNCTIONS / ML
+# ========================
+from pyspark.sql.functions import regexp_replace, col, explode
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.recommendation import ALS, ALSModel
 
 
 
@@ -394,3 +418,4 @@ def Collaborative_filtering_recommender_system(Name,Nationality,n):
 
 
     return df
+
