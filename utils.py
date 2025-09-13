@@ -7,42 +7,42 @@ from wordcloud import WordCloud
 from random import sample,seed
 
 # PYSPARK
-# import findspark
-# findspark.init()
-
-# import pyspark
-# from pyspark import SparkContext
-# from pyspark.sql import SparkSession
-# SparkContext.setSystemProperty('spark.hadoop.dfs.client.use.datanode.hostname', 'true')
-
-# sc = SparkContext(master="local", appName="New Spark Context")
-# spark = SparkSession(sc)
-
-# from pyspark.sql.functions import regexp_replace,col,explode
-# from pyspark.ml.feature import StringIndexer
-# from pyspark.ml.recommendation import ALS,ALSModel
-
-# PYSPARK
 import findspark
 findspark.init()
 
-from pyspark.sql import SparkSession
+import pyspark
 from pyspark import SparkContext
-from pyspark.sql.functions import regexp_replace, col, explode
-from pyspark.ml.feature import StringIndexer
-from pyspark.ml.recommendation import ALS, ALSModel
-
-# Thiết lập property nếu cần
+from pyspark.sql import SparkSession
 SparkContext.setSystemProperty('spark.hadoop.dfs.client.use.datanode.hostname', 'true')
 
-# Khởi tạo SparkSession (tự động tạo SparkContext nếu chưa có)
-spark = SparkSession.builder \
-    .appName("New Spark Context") \
-    .master("local") \
-    .getOrCreate()
+sc = SparkContext(master="local", appName="New Spark Context")
+spark = SparkSession(sc)
 
-# Lấy SparkContext từ SparkSession
-sc = spark.sparkContext
+from pyspark.sql.functions import regexp_replace,col,explode
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.recommendation import ALS,ALSModel
+
+# # PYSPARK
+# import findspark
+# findspark.init()
+
+# from pyspark.sql import SparkSession
+# from pyspark import SparkContext
+# from pyspark.sql.functions import regexp_replace, col, explode
+# from pyspark.ml.feature import StringIndexer
+# from pyspark.ml.recommendation import ALS, ALSModel
+
+# # Thiết lập property nếu cần
+# SparkContext.setSystemProperty('spark.hadoop.dfs.client.use.datanode.hostname', 'true')
+
+# # Khởi tạo SparkSession (tự động tạo SparkContext nếu chưa có)
+# spark = SparkSession.builder \
+#     .appName("New Spark Context") \
+#     .master("local") \
+#     .getOrCreate()
+
+# # Lấy SparkContext từ SparkSession
+# sc = spark.sparkContext
 
 
 
@@ -391,5 +391,6 @@ def Collaborative_filtering_recommender_system(Name,Nationality,n):
     #final_recommendation.select('Nationality','Hotel_name').show()
     recommended_hotels=final_recommendation.select('Reviewer Name','Nationality','Hotel_Name')
     df=recommended_hotels.toPandas()
+
 
     return df
