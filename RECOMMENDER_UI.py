@@ -24,7 +24,7 @@ st.markdown("""
     .stApp {
         background-image: url('https://i.pinimg.com/originals/59/c2/70/59c270f7d10071f06fc4e2b233f77267.gif');
         background-attachment: fixed;
-        background-size: 740px 740px;
+        background-size: 700px 700px;
         backkground-position: center bottom;
         font-family: 'Arial', sans-serif;
     }
@@ -429,4 +429,5 @@ elif st.session_state.mode=='login':
         elif st.session_state.user_password!=password_login:
 
             st.error('Sai mật khẩu hãy đăng nhập lại')
+
 
