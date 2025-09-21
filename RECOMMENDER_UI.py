@@ -24,7 +24,7 @@ st.markdown("""
     .stApp {
         background-image: url('https://i.pinimg.com/originals/59/c2/70/59c270f7d10071f06fc4e2b233f77267.gif');
         background-attachment: fixed;
-        background-size: 900px 900px;
+        background-size: 800px 800px;
         backkground-position: center bottom;
         font-family: 'Arial', sans-serif;
     }
@@ -175,7 +175,7 @@ if 'mode' not in st.session_state:
 # THANH MENU
 col1,col2,col3,col4,col5,col6=st.columns(6)
 with col1:
-    st.image('Hotels.com_Logo_2023.png',width=260)
+    st.image('Hotels.com_Logo_2023.png',width=200)
 with col2:
     if st.button('Trang chủ',key='Main_page'):
         st.session_state.mode='home'
@@ -427,4 +427,5 @@ elif st.session_state.mode=='login':
         elif st.session_state.user_name!=name_login:
             st.error('Sai tên đăng nhập hãy đăng nhập lại')
         elif st.session_state.user_password!=password_login:
+
             st.error('Sai mật khẩu hãy đăng nhập lại')
