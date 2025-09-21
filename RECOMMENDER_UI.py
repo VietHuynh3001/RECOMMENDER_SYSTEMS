@@ -94,7 +94,7 @@ st.markdown("""
     }
     .stButton >button p {
         font-weight: bolder !important;
-        font-size: 110%;
+        font-size: 100%;
         margin: 0;
         color:white;
     }
@@ -429,6 +429,7 @@ elif st.session_state.mode=='login':
         elif st.session_state.user_password!=password_login:
 
             st.error('Sai mật khẩu hãy đăng nhập lại')
+
 
 
 
