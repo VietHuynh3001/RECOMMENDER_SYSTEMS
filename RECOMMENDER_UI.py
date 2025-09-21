@@ -83,7 +83,7 @@ st.markdown("""
     /*Nút bấm trên thanh menu*/
     .stButton > button {
         border: none !important;
-        height:60px;
+        height:50px;
         width:150px;
         border-radius: 40px;
         background-color: LightSeaGreen;
@@ -429,6 +429,7 @@ elif st.session_state.mode=='login':
         elif st.session_state.user_password!=password_login:
 
             st.error('Sai mật khẩu hãy đăng nhập lại')
+
 
 
 
