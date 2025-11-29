@@ -189,7 +189,7 @@ with col5:
     if st.button('Sign up',key='Sign_up_top'):
         st.session_state.mode='signup'
 with col6:
-    if st.button('Sign inin',key='Log_in_top'):
+    if st.button('Sign in',key='Log_in_top'):
         st.session_state.mode='login'
 
 # BẤM VÀO TRANG CHỦ
@@ -403,7 +403,7 @@ elif st.session_state.mode=='login':
                         <b>Email:</b>{st.session_state.user_email}<br>
                         <b>Phone number:</b>{st.session_state.user_phone}</p>''',unsafe_allow_html=True)
             with image_section:
-                st.image('avata.jpg',caption='Ảnh đại diện',width=600)
+                st.image('avata.jpg',caption='Profile Picture',width=600)
             st.markdown(
             """<p class='Recommendation-title'>
                      YOU MIGHT ALSO LIKE
@@ -429,3 +429,4 @@ elif st.session_state.mode=='login':
         elif st.session_state.user_password!=password_login:
 
             st.error('Invalid password. Please try again')
+
